@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -13,7 +14,7 @@ import javax.persistence.Table;
  * 
  */
 @Entity
-//@NamedQuery(name="Categoria.findAll", query="SELECT c FROM Categoria c")
+@NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c")
 @Table(name = "categoria")
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;

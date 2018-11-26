@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -27,11 +26,13 @@ public class CategoriaDao {
 
 	public List<Categoria> listCategorias() {
 
-		String query = "from categoria";
-
 		em = getEntityManager();
-		Query q = em.createQuery(query, Categoria.class);
-		return q.getResultList();
+
+		// Muy importante aqui la consulta en HQL, se ha de escribir tal y como esté en
+		// la clase Entidad
+		// en este caso Categoria, con C mayúscula
+		List<Categoria> categorias = em.createQuery("from Categoria").getResultList();
+		return categorias;
 
 	}
 
@@ -43,6 +44,7 @@ public class CategoriaDao {
 			em.persist(categoria);
 			em.getTransaction().commit();
 
+			System.out.println("Insertando nueva entrada...");
 		} catch (Exception ex) {
 			System.out.println("Error insertando objeto : " + ex.getMessage());
 			ex.printStackTrace(System.out);
@@ -62,6 +64,7 @@ public class CategoriaDao {
 
 			em.merge(categoria);
 			em.getTransaction().commit();
+			System.out.println("Modificada entrada..." + categoria.getCodigo());
 
 		} catch (Exception ex) {
 			System.out.println("Error modificando objeto : " + ex.getMessage());

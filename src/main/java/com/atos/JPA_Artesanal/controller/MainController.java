@@ -20,9 +20,17 @@ public class MainController {
 	CategoriaServiceImpl categoriaService;
 
 	@RequestMapping(value = "/categorias", method = RequestMethod.GET)
-	public List<Categoria> muestraCategorias() {
+	public void muestraCategorias() {
 
-		return categoriaService.showAllCategories();
+		List<Categoria> categorias = categoriaService.showAllCategories();
+
+		System.out.println("LISTADO DE ENTRADAS EN TABLA *CATEGORIA* ");
+		for (Categoria categoria : categorias) {
+			// System.out.println("CATEGORIA : " + categoria.getCodigo() + " DESCRIP: " +
+			// categoria.getDescr());
+
+			System.out.format("%24s%24s", categoria.getCodigo(), categoria.getDescr() + "\n");
+		}
 
 	}
 
@@ -50,8 +58,6 @@ public class MainController {
 
 	@RequestMapping(value = "/borra", method = RequestMethod.DELETE)
 	public void borra2(@RequestParam("codigo") String codigo) {
-
-		System.out.println("!!!!!!!!!!!!!!!!!" + codigo);
 
 		Categoria cat = new Categoria(codigo, "vacio");
 

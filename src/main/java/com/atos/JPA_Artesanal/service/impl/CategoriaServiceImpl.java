@@ -17,32 +17,31 @@ public class CategoriaServiceImpl implements CategoriaService {
 
 	@Override
 	public List<Categoria> showAllCategories() {
-		CategoriaDao categoriaDao = new CategoriaDao();
 
-		return categoriaDao.listCategorias();
+		return categDao.listCategorias();
 	}
 
 	@Override
 	public void insert(Categoria categoria) {
 
-		CategoriaDao categoriaDao = new CategoriaDao();
-		categoriaDao.insert(categoria);
+		// CategoriaDao categoriaDao = new CategoriaDao();
+		categDao.insert(categoria);
 
 	}
 
 	@Override
 	public void update(Categoria categoria) {
-		CategoriaDao categoriaDao = new CategoriaDao();
-		categoriaDao.update(categoria);
+		// CategoriaDao categoriaDao = new CategoriaDao();
+		categDao.update(categoria);
 	}
 
 	@Override
 	public void delete(Categoria categoria) {
-		CategoriaDao categoriaDao = new CategoriaDao();
+		// CategoriaDao categoriaDao = new CategoriaDao();
 
 		Categoria categoriaNew = findById(categoria);
 
-		categoriaDao.delete(categoriaNew);
+		categDao.delete(categoriaNew);
 	}
 
 	@Override
