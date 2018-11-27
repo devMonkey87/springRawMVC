@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.atos.JPA_Artesanal.entities.Cusome;
+import com.atos.JPA_Artesanal.entities.Categoria;
 
 @Repository
 @Transactional
@@ -24,19 +24,19 @@ public class CategoriaDao {
 
 	}
 
-	public List<Cusome> listCategorias() {
+	public List<Categoria> listCategorias() {
 
 		em = getEntityManager();
 
 		// Muy importante aqui la consulta en HQL, se ha de escribir tal y como esté en
 		// la clase Entidad
 		// en este caso Categoria, con C mayúscula
-		List<Cusome> categorias = em.createQuery("from Categoria").getResultList();
+		List<Categoria> categorias = em.createQuery("from Categoria").getResultList();
 		return categorias;
 
 	}
 
-	public void insert(Cusome categoria) {
+	public void insert(Categoria categoria) {
 
 		try {
 			em = getEntityManager();
@@ -55,7 +55,7 @@ public class CategoriaDao {
 		}
 	}
 
-	public void update(Cusome categoria) {
+	public void update(Categoria categoria) {
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
@@ -77,11 +77,11 @@ public class CategoriaDao {
 
 	}
 
-	public void delete(Cusome categoria) {
+	public void delete(Categoria categoria) {
 		try {
 			em = getEntityManager();
 			em.getTransaction().begin();
-			Cusome cat = em.getReference(Cusome.class, categoria.getCodigo());
+			Categoria cat = em.getReference(Categoria.class, categoria.getCodigo());
 			em.remove(cat);
 			em.getTransaction().commit();
 
@@ -98,10 +98,10 @@ public class CategoriaDao {
 
 	}
 
-	public Cusome findById(Cusome categoria) {
+	public Categoria findById(Categoria categoria) {
 
 		em = getEntityManager();
-		return em.find(Cusome.class, categoria.getCodigo());
+		return em.find(Categoria.class, categoria.getCodigo());
 
 	}
 

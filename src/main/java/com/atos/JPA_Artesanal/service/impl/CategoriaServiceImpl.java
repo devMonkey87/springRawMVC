@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atos.JPA_Artesanal.dao.CategoriaDao;
-import com.atos.JPA_Artesanal.entities.Cusome;
+import com.atos.JPA_Artesanal.entities.Categoria;
 import com.atos.JPA_Artesanal.service.CategoriaService;
 
 @Service
@@ -16,13 +16,13 @@ public class CategoriaServiceImpl implements CategoriaService {
 	CategoriaDao categDao;
 
 	@Override
-	public List<Cusome> showAllCategories() {
+	public List<Categoria> showAllCategories() {
 
 		return categDao.listCategorias();
 	}
 
 	@Override
-	public void insert(Cusome categoria) {
+	public void insert(Categoria categoria) {
 
 		// CategoriaDao categoriaDao = new CategoriaDao();
 		categDao.insert(categoria);
@@ -30,22 +30,22 @@ public class CategoriaServiceImpl implements CategoriaService {
 	}
 
 	@Override
-	public void update(Cusome categoria) {
+	public void update(Categoria categoria) {
 		// CategoriaDao categoriaDao = new CategoriaDao();
 		categDao.update(categoria);
 	}
 
 	@Override
-	public void delete(Cusome categoria) {
+	public void delete(Categoria categoria) {
 		// CategoriaDao categoriaDao = new CategoriaDao();
 
-		Cusome categoriaNew = findById(categoria);
+		Categoria categoriaNew = findById(categoria);
 
 		categDao.delete(categoriaNew);
 	}
 
 	@Override
-	public Cusome findById(Cusome categoria) {
+	public Categoria findById(Categoria categoria) {
 
 		return categDao.findById(categoria);
 	}

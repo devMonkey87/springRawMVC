@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atos.JPA_Artesanal.entities.Cusome;
+import com.atos.JPA_Artesanal.entities.Categoria;
+import com.atos.JPA_Artesanal.entities.Customer;
 import com.atos.JPA_Artesanal.entities.Product;
 import com.atos.JPA_Artesanal.service.impl.CategoriaServiceImpl;
+import com.atos.JPA_Artesanal.service.impl.CustomerServiceImpl;
 import com.atos.JPA_Artesanal.service.impl.ProductServiceImpl;
 
 import net.bytebuddy.utility.RandomString;
@@ -24,13 +26,16 @@ public class MainController {
 	@Autowired
 	ProductServiceImpl productService;
 
+	@Autowired
+	CustomerServiceImpl customerService;
+
 	@RequestMapping(value = "/categorias", method = RequestMethod.GET)
 	public void muestraCategorias() {
 
-		List<Cusome> categorias = categoriaService.showAllCategories();
+		List<Categoria> categorias = categoriaService.showAllCategories();
 
 		System.out.println("LISTADO DE ENTRADAS EN TABLA *CATEGORIA* ");
-		for (Cusome categoria : categorias) {
+		for (Categoria categoria : categorias) {
 			// System.out.println("CATEGORIA : " + categoria.getCodigo() + " DESCRIP: " +
 			// categoria.getDescr());
 
@@ -42,7 +47,7 @@ public class MainController {
 	@RequestMapping(value = "/nueva", method = RequestMethod.GET)
 	public void añade() {
 
-		Cusome categoria = new Cusome();
+		Categoria categoria = new Categoria();
 
 		String codigoAleatorio = RandomString.make(8);
 
@@ -52,21 +57,12 @@ public class MainController {
 		categoriaService.insert(categoria);
 	}
 
-//	@RequestMapping(value = "/borra/{codigo}", method = RequestMethod.DELETE)
-//	public void borra(@PathVariable("codigo") String codigo) {
-//
-//		Categoria categoria = new Categoria(codigo, "vacio");
-//
-//		categoriaService.delete(categoria);
-//
-//	}
-
 	@RequestMapping(value = "/borra", method = RequestMethod.DELETE)
 	public void borra2(@RequestParam("codigo") String codigo) {
 
-		Cusome cat = new Cusome(codigo, "vacio");
+		Categoria cat = new Categoria(codigo, "vacio");
 
-		Cusome categoria = categoriaService.findById(cat);
+		Categoria categoria = categoriaService.findById(cat);
 
 		categoriaService.delete(categoria);
 
@@ -77,9 +73,9 @@ public class MainController {
 
 	{
 
-		Cusome cat = new Cusome(codigo, desc);
+		Categoria cat = new Categoria(codigo, desc);
 
-		Cusome categoria = categoriaService.findById(cat);
+		Categoria categoria = categoriaService.findById(cat);
 
 		categoria.setDescr(desc);
 
@@ -102,4 +98,25 @@ public class MainController {
 
 	}
 
+	@RequestMapping(value = "/clientes", method = RequestMethod.GET)
+	public void muestraClientes() {
+
+		List<Customer> customers = customerService.showAllCustomers();
+
+		System.out.println("LISTADO DE CLIENTES EN TABLA *CUSTOMER* ");
+		for (Customer c : customers) {
+			// System.out.println("CATEGORIA : " + categoria.getCodigo() + " DESCRIP: " +
+			// categoria.getDescr());
+			List<Product> productos = c.getProducts();
+
+			System.out.format("%24s%24s", c.getFirstname() + " ", c.getLastname() + " [Productos comprados]: ");
+
+			for (Product p : productos) {
+				System.out.print(p.getNombre() + ",");
+			}
+			System.out.println();
+
+		}
+
+	}
 }

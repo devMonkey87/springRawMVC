@@ -38,7 +38,7 @@ public class Product implements Serializable {
 	// bi-directional many-to-one association to Categoria
 	@ManyToOne
 	@JoinColumn(name = "cod_categoria")
-	private Cusome categoria;
+	private Categoria categoria;
 
 	public Product(String referencia, String descripcion, String nombre) {
 		super();
@@ -82,11 +82,11 @@ public class Product implements Serializable {
 		this.customers = customers;
 	}
 
-	public Cusome getCategoria() {
+	public Categoria getCategoria() {
 		return this.categoria;
 	}
 
-	public void setCategoria(Cusome categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 

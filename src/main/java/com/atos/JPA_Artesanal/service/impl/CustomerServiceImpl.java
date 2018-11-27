@@ -17,28 +17,27 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List<Customer> showAllCustomers() {
-		return null;
+		return customerDao.listClientes();
 	}
 
 	@Override
 	public void insert(Customer customer) {
-
+		customerDao.insert(customer);
 	}
 
 	@Override
 	public void update(Customer customer) {
-
+		customerDao.update(customer);
 	}
 
 	@Override
 	public void delete(Customer customer) {
-		// TODO Auto-generated method stub
-
+		customerDao.delete(customer);
 	}
 
 	@Override
 	public Customer findById(Customer customer) {
-		return null;
+		return customerDao.findById(customer);
 	}
 
 }
