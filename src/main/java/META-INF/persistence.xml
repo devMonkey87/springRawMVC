@@ -4,7 +4,7 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 			<!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 	 -->
-		<class>com.atos.JPA_Artesanal.entities.Cusome</class>
+		<class>com.atos.JPA_Artesanal.entities.Categoria</class>
 		<class>com.atos.JPA_Artesanal.entities.Customer</class>
 		<class>com.atos.JPA_Artesanal.entities.Product</class>
 		
