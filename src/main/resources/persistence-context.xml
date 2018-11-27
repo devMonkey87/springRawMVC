@@ -5,6 +5,7 @@
 	xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
@@ -14,33 +15,52 @@
 
 	<context:component-scan base-package="com.atos" />
 	<mvc:annotation-driven />
+
+	
+	
 	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
 
 	<bean id="categoriaServiceImpl"
 		class="com.atos.JPA_Artesanal.service.impl.CategoriaServiceImpl" />
 
-<bean id="productServiceImpl"
+	<bean id="productServiceImpl"
 		class="com.atos.JPA_Artesanal.service.impl.ProductServiceImpl" />
-		
-		
-		<bean id="entityManagerFactoryAccessLog" primary="false"
+
+
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+	    <property name="driverClassName" value="org.postgresql.Driver"/>
+	    <property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/ejemplochicos"/>
+	    <property name="username" value="postgres"/>
+	    <property name="password" value="atos"/>
+	    <property name="connectionTestQuery" value="select 1"/>
+	</bean>
+
+	<bean id="entityManagerFactory" primary="false"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="HibernatePU" />
-		<property name="packagesToScan" >
+		<property name="persistenceUnitName" value="LandettiPU" />
+		<property name="packagesToScan">
 			<array>
-	              <value>com.atos</value>
-	             
-	         </array>
-         </property>
-		
-		<property name="dataSource" ref="accessLogDataSource" />
+				<value>com.atos</value>
+			</array>
+		</property>
+
+		<property name="dataSource" ref="dataSource" />
+
+
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+			<bean
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="generateDdl" value="false" />
 				<property name="showSql" value="true" />
 				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
 			</bean>
 		</property>
 	</bean>
+	
+	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+ 		<property name="entityManagerFactory" ref="entityManagerFactory" />
+ 	</bean>
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
 </beans>

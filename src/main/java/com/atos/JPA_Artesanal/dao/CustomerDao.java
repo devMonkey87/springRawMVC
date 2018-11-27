@@ -3,11 +3,10 @@ package com.atos.JPA_Artesanal.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.transaction.Transactional;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.atos.JPA_Artesanal.entities.Customer;
 
@@ -15,18 +14,10 @@ import com.atos.JPA_Artesanal.entities.Customer;
 @Transactional
 public class CustomerDao {
 
+	@PersistenceContext
 	protected EntityManager em;
-	private EntityManagerFactory emf = null;
-
-	public CustomerDao() {
-
-		emf = Persistence.createEntityManagerFactory("HibernatePU");
-
-	}
 
 	public List<Customer> listClientes() {
-
-		em = getEntityManager();
 
 		// Muy importante aqui la consulta en HQL, se ha de escribir tal y como esté en
 		// la clase Entidad
@@ -39,10 +30,7 @@ public class CustomerDao {
 	public void insert(Customer customer) {
 
 		try {
-			em = getEntityManager();
-			em.getTransaction().begin();
 			em.persist(customer);
-			em.getTransaction().commit();
 
 			System.out.println("Insertando nueva entrada...");
 		} catch (Exception ex) {
@@ -57,13 +45,10 @@ public class CustomerDao {
 
 	public void update(Customer customer) {
 		try {
-			em = getEntityManager();
-			em.getTransaction().begin();
 
 			// em.detach(cat);
 
 			em.merge(customer);
-			em.getTransaction().commit();
 			System.out.println("Modificada entrada..." + customer.getFirstname() + " " + customer.getLastname());
 
 		} catch (Exception ex) {
@@ -79,11 +64,8 @@ public class CustomerDao {
 
 	public void delete(Customer customer) {
 		try {
-			em = getEntityManager();
-			em.getTransaction().begin();
 			Customer cust = em.getReference(Customer.class, customer.getId());
 			em.remove(cust);
-			em.getTransaction().commit();
 
 			System.out.println("Cliente borrado!:" + customer.toString());
 
@@ -100,13 +82,8 @@ public class CustomerDao {
 
 	public Customer findById(Customer cliente) {
 
-		em = getEntityManager();
 		return em.find(Customer.class, cliente.getId());
 
 	}
 
-	private EntityManager getEntityManager() {
-		return emf.createEntityManager();
-
-	}
 }
