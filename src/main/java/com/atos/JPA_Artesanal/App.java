@@ -11,7 +11,7 @@ public class App {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("appliction-context");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("/webapp/WEB-INF/appliction-context.xml");
 		// CategoriaServiceImpl c = new CategoriaServiceImpl();
 
 	}

@@ -18,8 +18,10 @@ import net.bytebuddy.utility.RandomString;
 @RequestMapping("produs")
 public class ProductController {
 
-	private String[] toppings = { "Queso", "Pepperoni", "Olivas", "Jamón" };
-	private String[] adjetivos = { "Viejo", "Pequeño", "Grande", "Picante" };
+	private String[] toppings = { "Queso", "Pepperoni", "Olivas", "Jamón", "Leche", "Pizza", "Harina", "Plátano",
+			"Café", "Horchata", "Galletas" };
+	private String[] adjetivos = { "Viejo", "Pequeño", "Grande", "Picante", "Fresco", "Agridulce", "Light", "Salado",
+			"Sin azúcares", "Añejo" };
 
 	@Autowired
 	ProductServiceImpl productService;
