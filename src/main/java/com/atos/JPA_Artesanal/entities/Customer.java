@@ -1,32 +1,41 @@
 package com.atos.JPA_Artesanal.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 
 /**
  * The persistent class for the customer database table.
  * 
  */
 @Entity
-@NamedQuery(name="Customer.findAll", query="SELECT c FROM Customer c")
+@NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")
 public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	private String firstname;
 
 	private String lastname;
 
-	//bi-directional many-to-many association to Product
-	@ManyToMany(mappedBy="customers")
+	// bi-directional many-to-many association to Product
+	@ManyToMany(mappedBy = "customers")
 	private List<Product> products;
 
 	public Customer() {
+	}
+
+	public Customer(Long id, String firstname, String lastname) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
 	}
 
 	public Long getId() {

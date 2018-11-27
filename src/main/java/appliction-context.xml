@@ -18,5 +18,6 @@
 	<bean id="categoriaServiceImpl"
 		class="com.atos.JPA_Artesanal.service.impl.CategoriaServiceImpl" />
 
-
+<bean id="productServiceImpl"
+		class="com.atos.JPA_Artesanal.service.impl.ProductServiceImpl" />
 </beans>
