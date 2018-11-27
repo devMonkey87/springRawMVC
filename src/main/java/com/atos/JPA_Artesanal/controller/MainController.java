@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atos.JPA_Artesanal.entities.Categoria;
+import com.atos.JPA_Artesanal.entities.Cusome;
 import com.atos.JPA_Artesanal.entities.Product;
 import com.atos.JPA_Artesanal.service.impl.CategoriaServiceImpl;
 import com.atos.JPA_Artesanal.service.impl.ProductServiceImpl;
@@ -27,10 +27,10 @@ public class MainController {
 	@RequestMapping(value = "/categorias", method = RequestMethod.GET)
 	public void muestraCategorias() {
 
-		List<Categoria> categorias = categoriaService.showAllCategories();
+		List<Cusome> categorias = categoriaService.showAllCategories();
 
 		System.out.println("LISTADO DE ENTRADAS EN TABLA *CATEGORIA* ");
-		for (Categoria categoria : categorias) {
+		for (Cusome categoria : categorias) {
 			// System.out.println("CATEGORIA : " + categoria.getCodigo() + " DESCRIP: " +
 			// categoria.getDescr());
 
@@ -42,7 +42,7 @@ public class MainController {
 	@RequestMapping(value = "/nueva", method = RequestMethod.GET)
 	public void añade() {
 
-		Categoria categoria = new Categoria();
+		Cusome categoria = new Cusome();
 
 		String codigoAleatorio = RandomString.make(8);
 
@@ -64,9 +64,9 @@ public class MainController {
 	@RequestMapping(value = "/borra", method = RequestMethod.DELETE)
 	public void borra2(@RequestParam("codigo") String codigo) {
 
-		Categoria cat = new Categoria(codigo, "vacio");
+		Cusome cat = new Cusome(codigo, "vacio");
 
-		Categoria categoria = categoriaService.findById(cat);
+		Cusome categoria = categoriaService.findById(cat);
 
 		categoriaService.delete(categoria);
 
@@ -77,9 +77,9 @@ public class MainController {
 
 	{
 
-		Categoria cat = new Categoria(codigo, desc);
+		Cusome cat = new Cusome(codigo, desc);
 
-		Categoria categoria = categoriaService.findById(cat);
+		Cusome categoria = categoriaService.findById(cat);
 
 		categoria.setDescr(desc);
 

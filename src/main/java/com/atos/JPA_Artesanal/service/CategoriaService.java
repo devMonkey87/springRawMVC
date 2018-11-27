@@ -2,18 +2,18 @@ package com.atos.JPA_Artesanal.service;
 
 import java.util.List;
 
-import com.atos.JPA_Artesanal.entities.Categoria;
+import com.atos.JPA_Artesanal.entities.Cusome;
 
 public interface CategoriaService {
 
-	public List<Categoria> showAllCategories();
+	public List<Cusome> showAllCategories();
 
-	public void insert(Categoria categoria);
+	public void insert(Cusome categoria);
 
-	public void update(Categoria categoria);
+	public void update(Cusome categoria);
 
-	public void delete(Categoria categoria);
+	public void delete(Cusome categoria);
 
-	public Categoria findById(Categoria categoria);
+	public Cusome findById(Cusome categoria);
 
 }
