@@ -41,7 +41,7 @@
 		<property name="persistenceUnitName" value="LandettiPU" />
 		<property name="packagesToScan">
 			<array>
-				<value>com.atos</value>
+				<value>com.atos.JPA_Artesanal.entities</value>
 			</array>
 		</property>
 
