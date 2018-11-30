@@ -3,10 +3,10 @@ package com.atos.JPA_Artesanal.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.JPA_Artesanal.entities.Categoria;
 import com.atos.JPA_Artesanal.entities.Customer;
@@ -17,7 +17,8 @@ import com.atos.JPA_Artesanal.service.impl.ProductServiceImpl;
 
 import net.bytebuddy.utility.RandomString;
 
-@RestController
+@Controller
+
 public class MainController {
 
 	@Autowired
@@ -28,6 +29,12 @@ public class MainController {
 
 	@Autowired
 	CustomerServiceImpl customerService;
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String muestraMain() {
+
+		return "main";
+	}
 
 	@RequestMapping(value = "/categorias", method = RequestMethod.GET)
 	public void muestraCategorias() {

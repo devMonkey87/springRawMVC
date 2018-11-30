@@ -1,18 +1,18 @@
-package com.atos.JPA_Artesanal;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-/**
- * Hello world!
- *
- */
-public class App {
-	public static void main(String[] args) {
-		System.out.println("Hello World!");
-
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("appliction-context");
-		// CategoriaServiceImpl c = new CategoriaServiceImpl();
-
-	}
-}
+//package com.atos.JPA_Artesanal;
+//
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.context.support.ClassPathXmlApplicationContext;
+//
+///**
+// * Hello world!
+// *
+// */
+//public class App {
+//	public static void main(String[] args) {
+//		System.out.println("Hello World!");
+//
+//		ApplicationContext ctx = new ClassPathXmlApplicationContext("application-context");
+//		// CategoriaServiceImpl c = new CategoriaServiceImpl();
+//
+//	}
+//}

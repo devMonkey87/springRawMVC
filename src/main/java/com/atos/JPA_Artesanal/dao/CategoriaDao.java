@@ -14,7 +14,7 @@ import com.atos.JPA_Artesanal.entities.Categoria;
 @Transactional
 public class CategoriaDao {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "LandettiPU")
 	protected EntityManager em;
 
 	public List<Categoria> listCategorias() {
@@ -22,7 +22,9 @@ public class CategoriaDao {
 		// Muy importante aqui la consulta en HQL, se ha de escribir tal y como esté en
 		// la clase Entidad
 		// en este caso Categoria, con C mayúscula
+
 		List<Categoria> categorias = em.createQuery("from Categoria").getResultList();
+
 		return categorias;
 
 	}

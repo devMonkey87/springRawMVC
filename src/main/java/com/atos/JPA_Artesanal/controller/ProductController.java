@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.JPA_Artesanal.entities.Categoria;
 import com.atos.JPA_Artesanal.entities.Product;
@@ -14,7 +14,7 @@ import com.atos.JPA_Artesanal.service.impl.ProductServiceImpl;
 
 import net.bytebuddy.utility.RandomString;
 
-@RestController
+@Controller
 @RequestMapping("produs")
 public class ProductController {
 
@@ -27,7 +27,7 @@ public class ProductController {
 	ProductServiceImpl productService;
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
-	public void muestraProductos() {
+	public List<Product> muestraProductos() {
 
 		List<Product> productos = productService.showAllProducts();
 
@@ -35,9 +35,13 @@ public class ProductController {
 		for (Product prod : productos) {
 			// System.out.println("CATEGORIA : " + categoria.getCodigo() + " DESCRIP: " +
 			// categoria.getDescr());
-
 			System.out.format("%24s%24s", prod.getReferencia(), prod.getNombre() + "\n");
 		}
+
+//		ModelAndView mnv = new ModelAndView("main2");
+//
+//		mnv.addObject("products", productos);
+		return productos;
 
 	}
 

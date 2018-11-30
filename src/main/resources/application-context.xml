@@ -16,4 +16,13 @@
 
 	<import resource="classpath:persistence-context.xml" />
 	<import resource="classpath:rest-servlet.xml" />
+	
+		<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+
+	<bean id="categoriaServiceImpl"
+		class="com.atos.JPA_Artesanal.service.impl.CategoriaServiceImpl" />
+
+	<bean id="productServiceImpl"
+		class="com.atos.JPA_Artesanal.service.impl.ProductServiceImpl" />
 </beans>

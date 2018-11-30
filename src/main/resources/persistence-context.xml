@@ -13,19 +13,12 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 
-	<context:component-scan base-package="com.atos" />
-	<mvc:annotation-driven />
+	<!-- <context:component-scan base-package="com.atos" />
+	<mvc:annotation-driven /> -->
 
 	
 	
-	<bean
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
 
-	<bean id="categoriaServiceImpl"
-		class="com.atos.JPA_Artesanal.service.impl.CategoriaServiceImpl" />
-
-	<bean id="productServiceImpl"
-		class="com.atos.JPA_Artesanal.service.impl.ProductServiceImpl" />
 
 
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
