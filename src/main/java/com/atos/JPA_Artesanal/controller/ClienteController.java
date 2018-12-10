@@ -3,6 +3,7 @@ package com.atos.JPA_Artesanal.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +13,7 @@ import com.atos.JPA_Artesanal.entities.Product;
 import com.atos.JPA_Artesanal.service.impl.CustomerServiceImpl;
 
 @RestController
+@CrossOrigin
 @RequestMapping("clientes")
 public class ClienteController {
 
@@ -39,4 +41,14 @@ public class ClienteController {
 		}
 
 	}
+
+	@RequestMapping(value = "/allJson", method = RequestMethod.GET)
+	public List<Customer> muestraCustomers() {
+
+		List<Customer> clientes = customerService.showAllCustomers();
+
+		return clientes;
+
+	}
+
 }

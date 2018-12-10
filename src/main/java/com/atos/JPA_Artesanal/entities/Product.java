@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 /**
  * The persistent class for the product database table.
  * 
@@ -33,11 +36,18 @@ public class Product implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "cust_x_prod", joinColumns = { @JoinColumn(name = "reference") }, inverseJoinColumns = {
 			@JoinColumn(name = "id_customer") })
+
+	// la anotacion que sigue sirve para evitar el uso del FETCH.Type=LAZY al traer
+	// las relaciones con otras entidades y
+	// no saturar así las consultas a la base de datos
+	@JsonProperty(access = Access.WRITE_ONLY)
+
 	private List<Customer> customers;
 
 	// bi-directional many-to-one association to Categoria
 	@ManyToOne
 	@JoinColumn(name = "cod_categoria")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Categoria categoria;
 
 	public Product(String referencia, String descripcion, String nombre) {

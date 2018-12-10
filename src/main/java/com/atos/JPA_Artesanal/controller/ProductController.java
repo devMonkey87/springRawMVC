@@ -4,9 +4,14 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.atos.JPA_Artesanal.entities.Categoria;
 import com.atos.JPA_Artesanal.entities.Product;
@@ -14,7 +19,8 @@ import com.atos.JPA_Artesanal.service.impl.ProductServiceImpl;
 
 import net.bytebuddy.utility.RandomString;
 
-@Controller
+@RestController
+@CrossOrigin
 @RequestMapping("produs")
 public class ProductController {
 
@@ -63,6 +69,27 @@ public class ProductController {
 		producto.setNombre(productoSacadoManga);
 
 		productService.insert(producto);
+	}
+
+//TODO revisar este código para añadir prods via JSON
+	@RequestMapping(value = "/addP", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public void addP(@RequestBody Product produc) {
+
+		productService.insert(produc);
+
+	}
+
+	@RequestMapping(value = "/{referencia}", method = RequestMethod.DELETE)
+	public void borra(@PathVariable("referencia") String codigo) {
+
+		Product product1 = new Product(codigo, "vacio", "vacio");
+
+		Product productAdded = productService.findById(product1);
+		System.out.println(productAdded.getNombre());
+		productService.delete(productAdded);
+		System.out.println("borradooooooooooooooooooooooooooooooooo");
+
 	}
 
 }

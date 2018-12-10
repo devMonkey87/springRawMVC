@@ -14,7 +14,7 @@ import com.atos.JPA_Artesanal.entities.Product;
 @Transactional
 public class ProductDao {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "LandettiPU")
 	protected EntityManager em;
 
 	public List<Product> listProducts() {
@@ -64,7 +64,7 @@ public class ProductDao {
 
 	public void delete(Product produkt) {
 		try {
-			Product p = em.getReference(Product.class, produkt.getDescripcion());
+			Product p = em.getReference(Product.class, produkt.getReferencia());
 			em.remove(p);
 
 			System.out.println("Producto borrado!:" + produkt.toString());
@@ -82,7 +82,7 @@ public class ProductDao {
 
 	public Product findById(Product product) {
 
-		return em.find(Product.class, product.getNombre());
+		return em.find(Product.class, product.getReferencia());
 
 	}
 

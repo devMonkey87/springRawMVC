@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 /**
  * The persistent class for the customer database table.
  * 
@@ -26,6 +29,7 @@ public class Customer implements Serializable {
 
 	// bi-directional many-to-many association to Product
 	@ManyToMany(mappedBy = "customers")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<Product> products;
 
 	public Customer() {
