@@ -5,6 +5,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,12 +33,13 @@ public class ProductController {
 	@Autowired
 	ProductServiceImpl productService;
 
+	// OBTIENE TODOS LOS PRODUCTOS
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public List<Product> muestraProductos() {
 
 		List<Product> productos = productService.showAllProducts();
 
-		System.out.println("LISTADO DE ENTRADAS EN TABLA *PRODUCT* ");
+//		System.out.println("LISTADO DE ENTRADAS EN TABLA *PRODUCT* ");
 		for (Product prod : productos) {
 			// System.out.println("CATEGORIA : " + categoria.getCodigo() + " DESCRIP: " +
 			// categoria.getDescr());
@@ -51,6 +53,7 @@ public class ProductController {
 
 	}
 
+	// GENERADOR DE PRODUCTOS DE MANERA ALEATORIA
 	@RequestMapping(value = "/nuevo", method = RequestMethod.GET)
 	public void añade() {
 
@@ -70,9 +73,9 @@ public class ProductController {
 
 		productService.insert(producto);
 	}
+//AÑADE UN PRODUCTO NUEVO VIA JSON
 
-//TODO revisar este código para añadir prods via JSON
-	@RequestMapping(value = "/addP", method = RequestMethod.POST)
+	@RequestMapping(value = "/addP", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void addP(@RequestBody Product produc) {
 
@@ -80,15 +83,25 @@ public class ProductController {
 
 	}
 
+	// BORRA PRODUCTO POR ID
 	@RequestMapping(value = "/{referencia}", method = RequestMethod.DELETE)
-	public void borra(@PathVariable("referencia") String codigo) {
+	public void borraPorID(@PathVariable("referencia") String codigo) {
 
-		Product product1 = new Product(codigo, "vacio", "vacio");
+		Product product1 = new Product(codigo, "", "");
 
 		Product productAdded = productService.findById(product1);
 		System.out.println(productAdded.getNombre());
 		productService.delete(productAdded);
-		System.out.println("borradooooooooooooooooooooooooooooooooo");
+
+	}
+
+//ENCUENTRA PRODUCTO POR ID
+	@RequestMapping(value = "/{referencia}", method = RequestMethod.GET)
+	public Product obtienePorID(@PathVariable("referencia") String codigo) {
+
+		Product product1 = new Product(codigo, "vacio", "vacio");
+
+		return productService.findById(product1);
 
 	}
 
