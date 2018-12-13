@@ -86,4 +86,11 @@ public class ProductDao {
 
 	}
 
+	public List<Product> findByName(String nombre) {
+		List<Product> productos = em.createQuery(
+				"Select referencia, descripcion, nombre from  Product where nombre LIKE UPPER('%" + nombre + "%')")
+				.getResultList();
+		return productos;
+	}
+
 }

@@ -39,12 +39,12 @@ public class ProductController {
 
 		List<Product> productos = productService.showAllProducts();
 
-//		System.out.println("LISTADO DE ENTRADAS EN TABLA *PRODUCT* ");
-		for (Product prod : productos) {
-			// System.out.println("CATEGORIA : " + categoria.getCodigo() + " DESCRIP: " +
-			// categoria.getDescr());
-			System.out.format("%24s%24s", prod.getReferencia(), prod.getNombre() + "\n");
-		}
+////		System.out.println("LISTADO DE ENTRADAS EN TABLA *PRODUCT* ");
+//		for (Product prod : productos) {
+//			// System.out.println("CATEGORIA : " + categoria.getCodigo() + " DESCRIP: " +
+//			// categoria.getDescr());
+//			System.out.format("%24s%24s", prod.getReferencia(), prod.getNombre() + "\n");
+//		}
 
 //		ModelAndView mnv = new ModelAndView("main2");
 //
@@ -102,6 +102,16 @@ public class ProductController {
 		Product product1 = new Product(codigo, "vacio", "vacio");
 
 		return productService.findById(product1);
+
+	}
+
+	// ENCUENTRA PRODUCTO POR NOMBRE
+	@RequestMapping(value = "/search/{nombre}", method = RequestMethod.GET)
+	public List<Product> obtieneByName(@PathVariable("nombre") String nombre) {
+
+		List<Product> productosTest = productService.findByName(nombre);
+
+		return productosTest;
 
 	}
 

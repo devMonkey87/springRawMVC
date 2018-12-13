@@ -45,4 +45,10 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.findById(product);
 	}
 
+	@Override
+	public List<Product> findByName(String name) {
+
+		return productDao.findByName(name);
+	}
+
 }
