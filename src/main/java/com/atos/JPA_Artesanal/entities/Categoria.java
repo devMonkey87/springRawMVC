@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * The persistent class for the categoria database table.
@@ -25,7 +28,8 @@ public class Categoria implements Serializable {
 	private String descr;
 
 	// bi-directional many-to-one association to Product
-	@OneToMany(mappedBy = "categoria")
+	@OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<Product> products;
 
 	public Categoria() {

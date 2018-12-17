@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -45,9 +46,9 @@ public class Product implements Serializable {
 	private List<Customer> customers;
 
 	// bi-directional many-to-one association to Categoria
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cod_categoria")
-	@JsonProperty(access = Access.WRITE_ONLY)
+	// @JsonProperty(access = Access.WRITE_ONLY)
 	private Categoria categoria;
 
 	public Product(String referencia, String descripcion, String nombre) {
@@ -55,6 +56,22 @@ public class Product implements Serializable {
 		this.referencia = referencia;
 		this.descripcion = descripcion;
 		this.nombre = nombre;
+	}
+
+	public Product(String referencia, String descripcion, String nombre, List<Customer> customers,
+			Categoria categoria) {
+		super();
+		this.referencia = referencia;
+		this.descripcion = descripcion;
+		this.nombre = nombre;
+		this.customers = customers;
+		this.categoria = categoria;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [referencia=" + referencia + ", descripcion=" + descripcion + ", nombre=" + nombre
+				+ ", customers=" + customers + ", categoria=" + categoria + "]";
 	}
 
 	public Product() {
