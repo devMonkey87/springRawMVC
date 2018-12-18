@@ -13,9 +13,10 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
 	<mvc:annotation-driven />
-	<bean
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"
-		p:order="0" />
+
+<mvc:cors>
+	<mvc:mapping path="/**" />
+</mvc:cors>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,6 +24,6 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 
-	<!-- <bean id="HandlerMapping"
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" /> -->
+	<bean id="HandlerMapping"
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
 </beans>

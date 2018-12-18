@@ -6,18 +6,24 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:sec="http://www.springframework.org/schema/security"  
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<context:component-scan base-package="com.atos" />
+	<context:annotation-config/>
 
+
+    <!-- <bean class="com.atos.JPA_Artesanal.security.SecurityConfig"/> -->
+    
 	<import resource="classpath:persistence-context.xml" />
 	<import resource="classpath:rest-servlet.xml" />
-	
-		<bean
+
+	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
 
 	<bean id="categoriaServiceImpl"
@@ -25,4 +31,10 @@
 
 	<bean id="productServiceImpl"
 		class="com.atos.JPA_Artesanal.service.impl.ProductServiceImpl" />
+
+
+
+
+
+
 </beans>

@@ -46,7 +46,7 @@
 				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="generateDdl" value="false" />
 				<property name="showSql" value="true" />
-				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
+				<property name="databasePlatform" value="com.atos.JPA_Artesanal.jpacfg.LandettiDialect" />
 			</bean>
 		</property>
 	</bean>
